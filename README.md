@@ -138,3 +138,26 @@ Ecommerce-Project/
   - Quản lý sản phẩm (thêm, sửa, xóa)  
   - Quản lý đơn hàng và người dùng  
 
+<img width="915" height="519" alt="image" src="https://github.com/user-attachments/assets/e3eaaeeb-cf0c-4d98-8749-1664b432295b" />
+TRANG CHỦ
+
+<img width="915" height="515" alt="image" src="https://github.com/user-attachments/assets/ffd01e4e-b78a-4746-9e42-2421d9511569" />
+TRANG CHI TIẾT SẢN PHẨM
+
+
+<img width="915" height="515" alt="image" src="https://github.com/user-attachments/assets/2a60241d-2bf3-47f3-a758-1ad69de3b2fc" />
+TRANG GIỎ HÀNG
+
+
+<img width="845" height="743" alt="image" src="https://github.com/user-attachments/assets/08b4f890-4638-40a3-8544-616c8f484998" />
+TRANG THANH TOÁN VNPAY
+
+
+<img width="915" height="515" alt="image" src="https://github.com/user-attachments/assets/9de49c14-bcf7-4644-a45c-835227e87aff" />
+TRANG TRẠNG THÁI ĐƠN HÀNG
+
+
+
+
+
+
