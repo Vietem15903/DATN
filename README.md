@@ -13,6 +13,72 @@ HƯỚNG DẪN CÀI ĐẶT :
 Để chạy được hệ thống, máy cần cài đặt các công cụ sau:
 - Node.js : phiên bản >= 18.0.0  và MongoDB Compass
 
+Trên máy trắng, trước tiên cần tải mã nguồn dự án từ GitHub:
+---Bước 1: Cài đặt Git trên máy tính
+
+Để tải source code từ GitHub, máy tính cần cài đặt Git.
+
+Truy cập trang tải Git chính thức:
+https://git-scm.com/downloads
+
+Chọn phiên bản phù hợp với hệ điều hành (Windows / macOS / Linux)
+
+Cài đặt trên Windows:
+
+Tải file .exe
+
+Mở file cài đặt
+
+Nhấn Next → Next → Install, giữ nguyên các tùy chọn mặc định
+
+Sau khi hoàn tất, nhấn Finish
+
+---Bước 2: Mở Terminal / Command Prompt
+
+Windows:
+
+Nhấn Win + R → gõ cmd → Enter
+hoặc
+
+Chuột phải trong thư mục bất kỳ → Open in Terminal
+
+macOS / Linux:
+
+Mở Terminal
+
+---Bước 3: Tải source code từ GitHub (Clone repository)
+
+Sử dụng lệnh git clone để tải toàn bộ mã nguồn dự án về máy:
+
+git clone https://github.com/Vietanh159203DATN/do-an-tot-nghiep-mern.git
+
+Sau khi chạy lệnh, Git sẽ tự động tải toàn bộ source code về máy.
+
+---Bước 4: Di chuyển vào thư mục dự án
+
+Sau khi clone xong, di chuyển vào thư mục dự án vừa tải về:
+
+cd do-an-tot-nghiep-mern
+
+---Bước 5: Kiểm tra cấu trúc source code
+
+Sau khi tải thành công, cấu trúc thư mục dự án như sau:
+
+Ecommerce-Project/
+├── Ecommerce-backend/
+├── Mern-stack/
+└── Database/
+
+
+Trong đó:
+
+Ecommerce-backend: mã nguồn backend (Node.js + Express)
+
+Mern-stack: mã nguồn frontend (React)
+
+Database: dữ liệu mẫu MongoDB (.json)
+
+
   * Cách cài Node.js phiên bản > 18 trên Windows
   ### Tải và cái đặt Nodejs
 Bước 1. Vào trang tải chính thức
