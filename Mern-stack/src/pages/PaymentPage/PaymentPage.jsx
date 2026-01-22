@@ -53,7 +53,7 @@ const PaymentPage = () => {
         phone: user?.phone,
       });
     }
-  }, [isOpenModalUpdateInfo]);
+  }, [isOpenModalUpdateInfo, user?.address, user?.city, user?.name, user?.phone]);
 
   const handleChangeAddress = () => {
     setIsOpenModalUpdateInfo(true);
@@ -64,7 +64,7 @@ const PaymentPage = () => {
       return total + cur.price * cur.amount;
     }, 0);
     return result;
-  }, [order]);
+  }, [order?.orderItemsSelected]);
 
   const priceDiscountMemo = useMemo(() => {
     const result = order?.orderItemsSelected?.reduce((total, cur) => {
@@ -75,7 +75,7 @@ const PaymentPage = () => {
       return Math.ceil(result);
     }
     return 0;
-  }, [order]);
+  }, [order?.orderItemsSelected, priceMemo]);
 
   const diliveryPriceMemo = useMemo(() => {
     if (priceMemo > 200000) {
@@ -106,7 +106,6 @@ const PaymentPage = () => {
   });
   const { data: dataAdd, isPending: isPendingAddOrder, isSuccess, isError } = mutationAddOrder;
 
-  const { isLoading, data } = mutationUpdate;
   useEffect(() => {
     if (isSuccess && dataAdd?.status === "OK") {
       const arrayOrder = [];
@@ -126,7 +125,18 @@ const PaymentPage = () => {
     } else if (isError) {
       message.error("Đặt hàng không thành công", messageApi);
     }
-  }, [isSuccess, isError]);
+  }, [
+    dataAdd?.status,
+    delivery,
+    dispatch,
+    isError,
+    isSuccess,
+    messageApi,
+    navigate,
+    order?.orderItemsSelected,
+    payment,
+    totalPriceMemo,
+  ]);
 
   const handleDilivery = (e) => {
     setDelivery(e.target.value);
@@ -376,7 +386,7 @@ const PaymentPage = () => {
             onCancel={handleCancelUpdate}
             onOk={handleUpdateInforUser}
           >
-            {/* <Loading isLoading={isLoading}> */}
+            {/* <Loading isLoading={isPendingUpdate}> */}
             <Form
               name="basic"
               labelCol={{ span: 4 }}

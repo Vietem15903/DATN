@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import {
   WrapperContentLeft,
   WrapperContentRight,
@@ -8,7 +8,6 @@ import InputFormCompoment from "../../compoments/InputFormCompoment/InputFormCom
 import { EyeInvisibleOutlined, EyeOutlined } from "@ant-design/icons";
 import { Button, Image, Input } from "antd";
 import imageLogo from "../../assets/images/HP4.jpg";
-import FooterCompoment from "../../compoments/FooterCompoment/FooterCompoment";
 import { useLocation, useNavigate } from "react-router-dom";
 import * as userService from "../../services/userService";
 import { useMutationHooks } from "../../hook/useMutationHook";
@@ -50,15 +49,20 @@ const SignInPage = () => {
   const { data, isSuccess, isError } = mutation;
 
   // hook useEffect
+  const handleGetDetailsUser = useCallback(async (id, token) => {
+    const res = await userService.getDetailsUser(id, token);
+    dispatch(updateUser({ ...res?.data, access_token: token }));
+  }, [dispatch]);
+
   useEffect(() => {
     if (isSuccess && data?.status !== "ERR") {
       if (location?.state) {
         setTimeout(() => {
-          Navigate(location?.state);
+          navigate(location?.state);
         }, 1500);
       } else {
         setTimeout(() => {
-          Navigate("/"); // navigate homePage
+          navigate("/"); // navigate homePage
         }, 1500);
       }
       message.success("Đăng nhập thành công", messageApi);
@@ -74,18 +78,11 @@ const SignInPage = () => {
       // check status Error
       message.error("Có lỗi xảy ra", messageApi);
     }
-  }, [isSuccess, isError, data]); // compare change in value
-
-  // update status login
-  const handleGetDetailsUser = async (id, token) => {
-    const res = await userService.getDetailsUser(id, token);
-    dispatch(updateUser({ ...res?.data, access_token: token }));
-  };
+  }, [data, handleGetDetailsUser, isError, isSuccess, location?.state, messageApi, navigate]); // compare change in value
 
   // navigate SignUpPage
-  const Navigate = useNavigate();
   const handleNavigateSignUp = () => {
-    Navigate("/sign-up");
+    navigate("/sign-up");
   };
 
   return (

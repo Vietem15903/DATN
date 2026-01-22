@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import {
   WrapperContentLeft,
   WrapperContentRight,
@@ -21,9 +21,9 @@ const SignUpPage = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const { messageApi, contextHolder } = message.useCustomMessage();
   const navigate = useNavigate();
-  const handleNavigateSignIn = () => {
+  const handleNavigateSignIn = useCallback(() => {
     navigate("/sign-in");
-  };
+  }, [navigate]);
 
   const handleSignUp = () => {
     mutation.mutate({ email, password, confirmPassword });
@@ -54,7 +54,7 @@ const SignUpPage = () => {
     } else if (isError) {
       message.error("Đăng ký không thành công", messageApi);
     }
-  }, [isSuccess, isError]);
+  }, [data?.status, handleNavigateSignIn, isError, isSuccess, messageApi]);
 
   return (
     <>

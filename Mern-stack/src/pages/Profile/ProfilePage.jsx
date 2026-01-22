@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import {
   WrapperContentProfile,
-  WrapperHeader,
   WrapperHeaderProfile,
 } from "./style";
 import {
@@ -43,7 +42,7 @@ const ProfilePage = () => {
     const { id, access_token, ...rests } = data;
     userService.updateUser(id, rests, access_token);
   });
-  const { data, isPending, isSuccess, isError } = mutation;
+  const { isPending, isSuccess, isError } = mutation;
 
   const handleName = (e) => {
     setName(e.target.value);
@@ -85,6 +84,11 @@ const ProfilePage = () => {
 
   const { messageApi, contextHolder } = message.useCustomMessage();
 
+  const handleGetDetailsUser = useCallback(async (id, token) => {
+    const res = await userService.getDetailsUser(id, token);
+    dispatch(updateUser({ ...res?.data, access_token: token }));
+  }, [dispatch]);
+
   useEffect(() => {
     if (isSuccess) {
       message.success("Cập nhật thành công", messageApi);
@@ -96,12 +100,7 @@ const ProfilePage = () => {
     } else if (isError) {
       message.error("Có lỗi xảy ra", messageApi);
     }
-  }, [isSuccess, isError]);
-
-  const handleGetDetailsUser = async (id, token) => {
-    const res = await userService.getDetailsUser(id, token);
-    dispatch(updateUser({ ...res?.data, access_token: token }));
-  };
+  }, [handleGetDetailsUser, isError, isSuccess, messageApi, user?.access_token, user?.id]);
 
   return (
     <>
