@@ -65,7 +65,7 @@ const MyOrderPage = () => {
         } else if (isErrorCancel) {
             message.error("Có lỗi sảy ra !", messageApi);
         }
-    }, [isErrorCancel, isSuccessCancel]);
+    }, [dataCancel?.status, isErrorCancel, isSuccessCancel, messageApi]);
 
     const renderProduct = (orderItems) => {
         return orderItems?.map((item) => {
@@ -73,6 +73,7 @@ const MyOrderPage = () => {
                 <WrapperHeaderItem key={item?._id}>
                     <img
                         src={item?.image}
+                        alt={item?.name || "Sản phẩm"}
                         style={{
                             width: "70px",
                             height: "70px",

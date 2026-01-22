@@ -107,10 +107,11 @@ const DetailsOrderPage = () => {
                         </div>
                         {data?.orderItems?.map((order) => {
                             return (
-                                <WrapperProduct>
+                                <WrapperProduct key={order?._id}>
                                     <WrapperNameProduct>
                                         <img
                                             src={order?.image}
+                                            alt={order?.name || "Sản phẩm"}
                                             style={{
                                                 width: "70px",
                                                 height: "70px",

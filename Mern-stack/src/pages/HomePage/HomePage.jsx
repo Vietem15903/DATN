@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import TypeProduct from "../../compoments/TypeProduct/TypeProduct";
 import { WrapperTypeProduct } from "./style";
 import SliderCompoment from "../../compoments/SliderCompoment/SliderCompoment";
@@ -8,7 +8,6 @@ import HP3 from "../../assets/images/HP3.jpg";
 import HP4 from "../../assets/images/HP4.jpg";
 import CardCompoment from "../../compoments/CardCompoment/CardCompoment";
 import { Button } from "antd";
-import FooterCompoment from "../../compoments/FooterCompoment/FooterCompoment";
 import { useQuery } from "@tanstack/react-query";
 import * as productService from "../../services/productService";
 import { useSelector } from "react-redux";
@@ -17,10 +16,8 @@ import { useDebounce } from "../../hook/useDebounce";
 
 const HomePage = () => {
   const searchProduct = useSelector((state) => state?.product?.search);
-  const refSearch = useRef();
-  const [pending, setPending] = useState(false);
+  const [pending] = useState(false);
   const searchDebounce = useDebounce(searchProduct, 1000);
-  const [stateProduct, setStateProduct] = useState([]);
   const [typeProducts, setTypeProducts] = useState([]);
   const [limit, setLimit] = useState(6);
 
@@ -43,7 +40,6 @@ const HomePage = () => {
   const {
     isPending,
     data: product,
-    isPreviousData,
   } = useQuery({
     queryKey: ["product", limit, searchDebounce],
     queryFn: fetchProductAll,
