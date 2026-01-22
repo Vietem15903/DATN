@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import NavbarCompoment from "../../compoments/NavbarCompoment/NavbarCompoment";
 import CardCompoment from "../../compoments/CardCompoment/CardCompoment";
 import { Col, Pagination, Row } from "antd";
@@ -22,24 +22,24 @@ const TypeProductPage = () => {
     total: 1,
   });
 
-  const fetchProductType = async (type, page, limit) => {
+  const fetchProductType = useCallback(async (type, page, limit) => {
     setPending(true);
     const res = await productService.getProductType(type, page , limit);
     if (res?.status === "OK") {
       setPending(false);
       setProducts(res?.data);
       setOriginalProducts(res?.data); // Lưu danh sách gốc
-      setPanigate({ ...panigate, total: res?.totalPage });
+      setPanigate((prev) => ({ ...prev, total: res?.totalPage }));
     } else {
       setPending(false);
     }
-  };
+  }, []);
 
   useEffect(() => {
     if (state) {
       fetchProductType(state, panigate.page, panigate.limit);
     }
-  }, [state, panigate.page, panigate.limit]);
+  }, [fetchProductType, state, panigate.page, panigate.limit]);
 
   useEffect(() => {
     if (searchDebounce) {

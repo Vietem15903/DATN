@@ -101,7 +101,7 @@ export const orderSlide = createSlice({
       state.orderItemsSelected = orderSelected;
     },
     setPaymentStatus: (state, action) => {
-      const { isPaid, paidAt } = action.payload;
+      const { isPaid } = action.payload;
       state.isPaid = isPaid;
     }
   },

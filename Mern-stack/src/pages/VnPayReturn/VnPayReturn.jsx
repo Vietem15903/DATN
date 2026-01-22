@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useMutationHooks } from '../../hook/useMutationHook';
 import { removeAllOrderProduct } from '../../redux/slices/orderSlice';
 import * as OrderService from "../../services/orderService";
-import { setPaymentStatus } from '../../redux/slices/orderSlice';
 import Loading from '../../compoments/LoadingCompoment/Loading';
 
 const VnPayReturn = () => {
@@ -21,7 +20,7 @@ const VnPayReturn = () => {
             return total + cur.price * cur.amount;
         }, 0);
         return result;
-    }, [order]);
+    }, [order?.orderItemsSelected]);
 
     const priceDiscountMemo = useMemo(() => {
         const result = order?.orderItemsSelected?.reduce((total, cur) => {
@@ -32,7 +31,7 @@ const VnPayReturn = () => {
             return result;
         }
         return 0;
-    }, [order]);
+    }, [order?.orderItemsSelected, priceMemo]);
 
     const diliveryPriceMemo = useMemo(() => {
         if (priceMemo > 200000) {
@@ -100,7 +99,17 @@ const VnPayReturn = () => {
         };
 
         fetchPaymentResult();
-    }, [location.search, navigate, user, order]);
+    }, [
+        location.search,
+        navigate,
+        user,
+        order?.orderItemsSelected,
+        deliveryValue,
+        diliveryPriceMemo,
+        priceMemo,
+        totalPriceMemo,
+        mutationAddOrder,
+    ]);
     useEffect(() => {
         if (isSuccess && dataAdd?.status === "OK") {
             // dispatch(setPaymentStatus({ isPaid: true}))
@@ -119,7 +128,16 @@ const VnPayReturn = () => {
                 }
             });
         }
-    }, [isSuccess, isError]);
+    }, [
+        dataAdd?.status,
+        deliveryValue,
+        dispatch,
+        isError,
+        isSuccess,
+        navigate,
+        order?.orderItemsSelected,
+        totalPriceMemo,
+    ]);
     return (
         <Loading isPending={isPendingAddOrder}>
             <div style={{
