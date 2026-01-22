@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Alert, Badge, Col, Input, Popover } from "antd";
+import { Badge, Col, Input, Popover } from "antd";
 import {
   WrapperHeader,
   WrapperTextHeader,
@@ -34,7 +34,6 @@ const HeaderCompomment = ({ isHiddenSearch = false, isHiddenCart = false }) => {
   const [pending, setPending] = useState(false);
   const [useName, setUserName] = useState("");
   const [useAvatar, setUserAvatar] = useState("");
-  const [search, setSearch] = useState("");
   const [isOpenPopup, setIsOpenPopup] = useState(false);
   const handleClickNavigate = (type) => {
     if (type === "profile-user") {
@@ -88,7 +87,6 @@ const HeaderCompomment = ({ isHiddenSearch = false, isHiddenCart = false }) => {
   };
 
   const onSearch = (e) => {
-    setSearch(e.target.value);
     dispatch(searchProduct(e.target.value));
   };
   return (

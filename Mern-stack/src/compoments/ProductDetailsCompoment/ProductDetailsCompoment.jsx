@@ -1,7 +1,5 @@
 import { Col, Row, Image, Rate } from "antd";
-import React, { useState } from "react";
-import imageProduct from "../../assets/images/product1.jpg";
-import imageProductSmall from "../../assets/images/productSmall.jpg";
+import { useState } from "react";
 import * as productService from "../../services/productService";
 import { useQuery } from "@tanstack/react-query";
 import * as message from "../Message/Message";
@@ -12,13 +10,12 @@ import {
   WrapperInputNumber,
   WrapperNameProduct,
   WrapperPriceProduct,
-  WrapperProductSmall,
   WrapperQualityProduct,
 } from "./style";
 
 import { PlusOutlined, MinusOutlined } from "@ant-design/icons";
 import { useDispatch, useSelector } from "react-redux";
-import { Navigate, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { addOrderProduct } from "../../redux/slices/orderSlice";
 import { convertPrice } from "../../utils";
 const ProductDetailsCompoment = ({ idProduct }) => {
@@ -46,7 +43,7 @@ const ProductDetailsCompoment = ({ idProduct }) => {
     }
   };
 
-  const { isPending, data: productDetails } = useQuery({
+  const { data: productDetails } = useQuery({
     queryKey: ["product-details", idProduct],
     queryFn: fetchGetDetailsProduct,
     enabled: !!idProduct,

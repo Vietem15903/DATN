@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from 'react'
+import React, { Fragment, useCallback, useEffect, useState } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { routes } from "./routes/index";
 import DefaultCompoment from './compoments/DefaultCompoment/DefaultCompoment';
@@ -28,18 +28,6 @@ function App() {
   }
 
 
-  useEffect(() => {
-    setIsPending(true)
-    const { storageData, decoded } = handleDecoded()
-    if (decoded?.id) {
-      handleGetDetailsUser(decoded?.id, storageData);
-    }
-    setIsPending(false)
-
-  }, []);
-
-
-  
   // true
   userService.axiosJWT.interceptors.request.use(async (config) => {
     const currentTime = new Date();
@@ -58,11 +46,20 @@ function App() {
     return Promise.reject(error);
   });
 
-
-  const handleGetDetailsUser = async (id, token) => {
+  const handleGetDetailsUser = useCallback(async (id, token) => {
     const res = await userService.getDetailsUser(id, token);
     dispatch(updateUser({ ...res?.data, access_token: token }));
-  };
+  }, [dispatch]);
+
+  useEffect(() => {
+    setIsPending(true)
+    const { storageData, decoded } = handleDecoded()
+    if (decoded?.id) {
+      handleGetDetailsUser(decoded?.id, storageData);
+    }
+    setIsPending(false)
+
+  }, [handleGetDetailsUser]);
 
   return (
     <div>

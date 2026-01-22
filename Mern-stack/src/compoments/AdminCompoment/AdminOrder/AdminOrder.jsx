@@ -1,29 +1,20 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import { WrapperHeader } from "./style.js";
-import { Button, Form, Space } from "antd";
-import { convertPrice, getBase64 } from "../../../utils.js";
+import { Button, Space } from "antd";
+import { convertPrice } from "../../../utils.js";
 import { useQuery } from "@tanstack/react-query";
 import {
-  EditOutlined,
-  DeleteOutlined,
   SearchOutlined
 } from "@ant-design/icons";
-import * as userService from "../../../services/userService.js";
 import TableCompoment from "../../TableCompoment/TableCompoment.jsx";
-import ModalCompoment from "../../ModalCompoment/ModalCompoment.jsx";
-import Loading from "../../LoadingCompoment/Loading.jsx";
-import { WrapperUploadFile } from "./style.js";
 import InputComponentProduct from "../../InputCompoment/InputComponentProduct.jsx";
-import DrawerComponent from "../../DrawerComponent/DrawerComponent.js";
 import * as message from "../../Message/Message.jsx";
 import { useSelector } from "react-redux";
-import { useMutationHooks } from "../../../hook/useMutationHook.js";
 import * as OrderService from "../../../services/orderService.js";
 
 
 const AdminOrder = () => {
-  const [rowSelected, setRowSelected] = useState("");
-  const { messageApi, contextHolder } = message.useCustomMessage();
+  const { contextHolder } = message.useCustomMessage();
   const searchInput = useRef(null);
 
   const user = useSelector((state) => state?.user);
@@ -213,13 +204,6 @@ const AdminOrder = () => {
             columns={columns}
             isPending={isPendingOrders}
             data={dataTable}
-            onRow={(record, rowIndex) => {
-              return {
-                onClick: (event) => {
-                  setRowSelected(record._id);
-                },
-              };
-            }}
           />
         </div>
       </div>

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { WrapperHeader, WrapperUploadFile } from "./style";
 import { Button, Form, Select, Space } from "antd";
 import {
@@ -309,6 +309,37 @@ const AdminProduct = () => {
     product?.data?.map((productItem) => {
       return { ...productItem, key: productItem._id };
     });
+  const handleCancel = useCallback(() => {
+    setIsModalOpen(false);
+    setStateProduct({
+      name: "",
+      type: "",
+      price: "",
+      countInStock: "",
+      description: "",
+      rating: "",
+      image: "",
+      discount: "",
+      newType: "",
+    });
+    form.resetFields();
+  }, [form]);
+
+  const handleCloseDrawer = useCallback(() => {
+    setIsOpenDrawer(false);
+    setStateProductDetails({
+      name: "",
+      price: "",
+      description: "",
+      rating: "",
+      image: "",
+      type: "",
+      countInStock: "",
+      discount: "",
+      newType: "",
+    });
+    form.resetFields();
+  }, [form]);
   useEffect(() => {
     if (isSuccess && data?.status === "OK") {
       message.success("Thêm sản phẩm thành công", messageApi);
@@ -316,7 +347,7 @@ const AdminProduct = () => {
     } else if (isError) {
       message.error("Có lỗi xảy ra", messageApi);
     }
-  }, [isSuccess]);
+  }, [data?.status, handleCancel, isError, isSuccess, messageApi]);
 
   useEffect(() => {
     if (isSuccessDeleted && dataDeleted?.status === "OK") {
@@ -325,7 +356,7 @@ const AdminProduct = () => {
     } else if (isErrorDeleted) {
       message.error("Có lỗi xảy ra", messageApi);
     }
-  }, [isSuccessDeleted]);
+  }, [dataDeleted?.status, isErrorDeleted, isSuccessDeleted, messageApi]);
 
   const handleCancelDelete = () => {
     setIsModalOpenDelete(false);
@@ -342,20 +373,6 @@ const AdminProduct = () => {
     );
   };
 
-  const handleCancel = () => {
-    setIsModalOpen(false);
-    setStateProduct({
-      name: "",
-      type: "",
-      price: "",
-      countInStock: "",
-      description: "",
-      rating: "",
-      image: "",
-      discount: ""
-    });
-    form.resetFields();
-  };
   const handleChangeSelect = (value) => {
     setStateProduct({
       ...stateProduct,
@@ -370,20 +387,6 @@ const AdminProduct = () => {
     queryKey: ["type-product"],
     queryFn: fetchAllTypeProduct,
   });
-  const handleCloseDrawer = () => {
-    setIsOpenDrawer(false);
-    setStateProductDetails({
-      name: "",
-      price: "",
-      description: "",
-      rating: "",
-      image: "",
-      type: "",
-      countInStock: "",
-      discount: ""
-    });
-    form.resetFields();
-  };
   //check
   const onFinish = (values) => {
     const params = {
@@ -486,7 +489,7 @@ const AdminProduct = () => {
     } else if (isErrorUpdated) {
       message.error("Có lỗi xảy ra", messageApi);
     }
-  }, [isSuccessUpdated]);
+  }, [dataUpdated?.status, handleCloseDrawer, isErrorUpdated, isSuccessUpdated, messageApi]);
 
   //Return Render AdminProduct
   return (

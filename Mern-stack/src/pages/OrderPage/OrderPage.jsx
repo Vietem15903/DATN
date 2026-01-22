@@ -69,7 +69,7 @@ const OrderPage = () => {
     return res;
   });
 
-  const { isPending, data } = mutationUpdate;
+  const { isPending } = mutationUpdate;
   const handleAddCard = () => {
     if (!order?.orderItemsSelected?.length) {
       message.error("Vui lòng chọn sản phẩm", messageApi);
@@ -118,7 +118,7 @@ const OrderPage = () => {
 
   useEffect(() => {
     dispatch(selectedOrder({ listChecked }));
-  }, [listChecked]);
+  }, [dispatch, listChecked]);
 
   useEffect(() => {
     form.setFieldsValue(stateUserDetails);
@@ -126,22 +126,22 @@ const OrderPage = () => {
 
   useEffect(() => {
     if (isOpenModalUpdateInfo) {
-      setStateUserDetails({
-        ...stateUserDetails,
+      setStateUserDetails((prev) => ({
+        ...prev,
         name: user?.name,
         phone: user?.phone,
         city: user?.city,
         address: user?.address,
-      });
+      }));
     }
-  }, [isOpenModalUpdateInfo]);
+  }, [isOpenModalUpdateInfo, user?.address, user?.city, user?.name, user?.phone]);
 
   const priceMemo = useMemo(() => {
     const result = order?.orderItemsSelected?.reduce((total, cur) => {
       return total + ((cur.price * cur.amount));
     }, 0);
     return result;
-  }, [order]);
+  }, [order?.orderItemsSelected]);
 
   const priceDiscountMemo = useMemo(() => {
     const result = order?.orderItemsSelected?.reduce((total, cur) => {
@@ -152,7 +152,7 @@ const OrderPage = () => {
       return Math.ceil(result);
     }
     return 0;
-  }, [order]);
+  }, [order?.orderItemsSelected]);
 
   const diliveryPriceMemo = useMemo(() => {
     if (priceMemo >= 2000000 && priceMemo < 5000000) {
@@ -164,7 +164,7 @@ const OrderPage = () => {
     } else {
       return 20000;
     }
-  }, [priceMemo]);
+  }, [order?.orderItemsSelected?.length, priceMemo]);
 
   const totalPriceMemo = useMemo(() => {
     return (
@@ -254,6 +254,7 @@ const OrderPage = () => {
                         ></Checkbox>
                         <img
                           src={order?.image}
+                          alt={order?.name || "Sản phẩm"}
                           style={{
                             width: "77px",
                             height: "79px",

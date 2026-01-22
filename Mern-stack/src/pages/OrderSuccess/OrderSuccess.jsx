@@ -1,12 +1,7 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React from 'react';
 import Loading from '../../compoments/LoadingCompoment/Loading';
-import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
-import { Form, Radio } from 'antd';
-import { useMutationHooks } from '../../hook/useMutationHook';
-import * as userService from "../../services/userService";
-import * as OrderService from "../../services/orderService";
-import { WrapperInfo, WrapperLeft } from '../OrderPage/style';
+import { WrapperInfo } from '../OrderPage/style';
 import { Label, WrapperContainer, WrapperItemOrder, WrapperRight, WrapperValue } from './style';
 import { convertPrice } from '../../utils';
 import * as message from "../../compoments/Message/Message";
@@ -15,9 +10,7 @@ import { orderContant } from '../../contant';
 
 
 const OrderSuccess = () => {
-    const order = useSelector((state) => state.order);
-    const { messageApi, contextHolder } = message.useCustomMessage();
-    const user = useSelector((state) => state.user);
+    const { contextHolder } = message.useCustomMessage();
     const location = useLocation();
     const { state } = location;
     localStorage.removeItem('delivery');
@@ -63,6 +56,7 @@ const OrderSuccess = () => {
                                                 >
                                                     <img
                                                         src={order?.image}
+                                                        alt={order?.name || "Sản phẩm"}
                                                         style={{
                                                             width: "77px",
                                                             height: "79px",

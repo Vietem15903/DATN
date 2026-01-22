@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { WrapperHeader } from "./style";
 import { Button, Form, Space } from "antd";
 import { getBase64 } from "../../../utils";
@@ -73,7 +73,7 @@ const AdminUser = () => {
     return res;
   };
 
-  const fetchGetDetailsUser = async (rowSelected) => {
+  const fetchGetDetailsUser = useCallback(async (rowSelected) => {
     const accessToken = user?.access_token;
     const res = await userService.getDetailsUser(rowSelected, accessToken);
     if (res?.data) {
@@ -87,7 +87,7 @@ const AdminUser = () => {
       });
     }
     setIsPendingUpdate(false);
-  };
+  }, [user?.access_token]);
 
   useEffect(() => {
     form.setFieldsValue(stateUserDetails);
@@ -98,7 +98,7 @@ const AdminUser = () => {
       setIsPendingUpdate(true);
       fetchGetDetailsUser(rowSelected);
     }
-  }, [rowSelected, isOpenDrawer]);
+  }, [fetchGetDetailsUser, isOpenDrawer, rowSelected]);
 
   const handleDetailsProduct = () => {
     setIsOpenDrawer(true);
@@ -295,7 +295,7 @@ const AdminUser = () => {
     } else if (isErrorDeleted) {
       message.error("Có lỗi xảy ra!", messageApi);
     }
-  }, [isSuccessDelected]);
+  }, [dataDeleted?.status, isErrorDeleted, isSuccessDelected, messageApi]);
 
   // useEffect(() => {
   //   if (isSuccessDelectedMany && dataDeletedMany?.status === "OK") {
@@ -305,7 +305,7 @@ const AdminUser = () => {
   //   }
   // }, [isSuccessDelectedMany]);
 
-  const handleCloseDrawer = () => {
+  const handleCloseDrawer = useCallback(() => {
     setIsOpenDrawer(false);
     setStateUserDetails({
       name: "",
@@ -314,7 +314,7 @@ const AdminUser = () => {
       isAdmin: false,
     });
     form.resetFields();
-  };
+  }, [form]);
 
   useEffect(() => {
     if (isSuccessUpdated && dataUpdated?.status === "OK") {
@@ -323,7 +323,7 @@ const AdminUser = () => {
     } else if (isErrorUpdated) {
       message.error("Có lỗi xảy ra!", messageApi);
     }
-  }, [isSuccessUpdated]);
+  }, [dataUpdated?.status, handleCloseDrawer, isErrorUpdated, isSuccessUpdated, messageApi]);
 
   const handleCancelDelete = () => {
     setIsModalOpenDelete(false);

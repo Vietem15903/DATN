@@ -1,5 +1,4 @@
 import React from "react";
-import { Card } from "antd";
 import { StarFilled } from "@ant-design/icons";
 import {
   StyleNameProduct,
@@ -13,12 +12,11 @@ import { convertPrice } from "../../utils";
 import { useNavigate } from "react-router-dom";
 
 const CardCompoment = (props) => {
-  const { countInStock, description, discount, image, name, price, rating, type, id } = props;
+  const { countInStock, discount, image, name, price, rating, id } = props;
   const navigate = useNavigate()
   const handleDetailsProduct = (id) => {
     navigate(`/product-details/${id}`)
   };
-  const { Meta } = Card;
   return (
     <div style={{ padding: "16px 0" }}>
       <WrapperCardStyle

@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { Form, Radio } from 'antd';
 import { useMutationHooks } from '../../hook/useMutationHook';
-import * as userService from "../../services/userService";
 import * as OrderService from "../../services/orderService";
 import { WrapperInfo, WrapperLeft } from '../OrderPage/style';
 import { Label, WrapperRadio, WrapperRight, WrapperTotal } from './style';
@@ -94,11 +93,6 @@ const PaymentPage = () => {
   }, [priceMemo, priceDiscountMemo, diliveryPriceMemo]);
 
 
-  const mutationUpdate = useMutationHooks((data) => {
-    const { id, token, ...rests } = data;
-    const res = userService.updateUser(id, { ...rests }, token);
-    return res;
-  });
   const mutationAddOrder = useMutationHooks((data) => {
     const { token, ...rests } = data;
     const res = OrderService.createOrder({ ...rests }, token);

@@ -1,5 +1,4 @@
-import { Divider, Radio, Table } from "antd";
-import React, { useState } from "react";
+import { Divider, Table } from "antd";
 import Loading from "../LoadingCompoment/Loading";
 
 const TableCompoment = (props) => {
