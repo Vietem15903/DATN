@@ -50,7 +50,7 @@ const HomePage = () => {
 
   return (
     <>
-      <div style={{ padding: "0 120px" }}>
+      <div style={{ padding: "0 clamp(16px, 4vw, 120px)" }}>
         <WrapperTypeProduct>
         {typeProducts.map((item) => {
             return <TypeProduct name={item} key={item} />;
@@ -61,7 +61,7 @@ const HomePage = () => {
         id="container"
         style={{
           backgroundColor: "#efefef",
-          padding: "0 180px",
+          padding: "0 clamp(16px, 6vw, 180px)",
           height: "auto",
         }}
       >
@@ -71,7 +71,7 @@ const HomePage = () => {
             style={{
               marginTop: "60px",
               display: "flex",
-              gap: "60px",
+              gap: "clamp(16px, 4vw, 60px)",
               flexWrap: "wrap",
             }}
           >

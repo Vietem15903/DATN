@@ -70,11 +70,12 @@ const SignUpPage = () => {
       >
         <div
           style={{
-            width: "800px",
-            height: "445px",
+            width: "min(800px, 92vw)",
+            height: "auto",
             borderRadius: "8px",
             backgroundColor: "#fff",
             display: "flex",
+            flexWrap: "wrap",
           }}
         >
           <WrapperContentLeft>

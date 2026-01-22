@@ -105,7 +105,7 @@ const ProfilePage = () => {
   return (
     <>
       {contextHolder}
-      <div style={{ width: "1270px", margin: "0 auto" }}>
+      <div style={{ maxWidth: "1270px", width: "100%", margin: "0 auto", padding: "0 16px" }}>
         <WrapperHeaderProfile>Thông tin người dùng </WrapperHeaderProfile>
         <Loading isPending={isPending}>
           <WrapperContentProfile>

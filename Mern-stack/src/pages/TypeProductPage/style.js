@@ -16,4 +16,11 @@ export const WrapperNavbar = styled(Col)`
   height: fit-content;
   margin-top: 20px;
   width: 200px;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    margin-right: 0;
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
 `;

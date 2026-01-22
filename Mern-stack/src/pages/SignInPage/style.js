@@ -6,6 +6,10 @@ export const WrapperContentLeft = styled.div`
     display: flex;
     flex-direction: column;
     gap: 20px;
+
+    @media (max-width: 768px) {
+        padding: 24px 20px;
+    }
 `
 
 export const WrapperContentRight = styled.div`
@@ -16,6 +20,11 @@ export const WrapperContentRight = styled.div`
     align-items: center;
     gap: 4px;
     background-color: rgba(0,0,0,.12);
+
+    @media (max-width: 768px) {
+        width: 100%;
+        padding: 20px 16px;
+    }
 `
 
 export const WrapperTextLink = styled.span`

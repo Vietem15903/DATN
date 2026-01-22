@@ -4,6 +4,8 @@ export const WrapperHeaderUser = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
 `;
 
 export const WrapperInfoUser = styled.div`
@@ -45,6 +47,11 @@ export const WrapperContentInfo = styled.div`
   background-color: #fff;
   border-radius: 6px;
   padding: 10px;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    height: auto;
+  }
 `;
 
 export const WrapperStyleContent = styled.div`
@@ -61,12 +68,18 @@ export const WrapperProduct = styled.div`
   display: flex;
   align-items: flex-start;
   margin-top: 10px;
+  flex-wrap: wrap;
+  gap: 8px;
 `;
 
 export const WrapperNameProduct = styled.div`
   display: flex;
   align-items: flex-start;
   width: 670px;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 export const WrapperItem = styled.div`
@@ -75,11 +88,19 @@ export const WrapperItem = styled.div`
   &:last-child {
     color: red;
   }
+
+  @media (max-width: 768px) {
+    width: auto;
+  }
 `;
 export const WrapperItemLabel = styled.div`
   width: 200px;
   &:last-child {
     font-weight: bold;
+  }
+
+  @media (max-width: 768px) {
+    width: auto;
   }
 `;
 

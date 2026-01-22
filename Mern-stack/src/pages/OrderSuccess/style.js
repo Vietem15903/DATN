@@ -32,6 +32,8 @@ export const WrapperListOrder = styled.div``;
 export const WrapperItemOrder = styled.div`
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
   padding: 9px 16px;
   background: #fff;
   margin-top: 12px;
@@ -53,12 +55,18 @@ export const WrapperCountOrder = styled.div`
 `;
 
 export const WrapperRight = styled.div`
-  width: 320px;
-  margin-left: 1000px;
+  width: fit-content;
+  margin-left: auto;
   display: flex;
   flex-direction: column;
   gap: 10px;
-  align-items: center;
+  align-items: flex-end;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    margin-left: 0;
+    align-items: flex-start;
+  }
 `;
 
 export const WrapperInfo = styled.div`
@@ -110,4 +118,9 @@ export const WrapperRadio = styled(Radio.Group)`
   flex-direction: column;
   gap: 10px;
   justify-content: center;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    height: auto;
+  }
 `;

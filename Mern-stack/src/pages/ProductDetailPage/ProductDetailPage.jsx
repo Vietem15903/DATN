@@ -8,9 +8,9 @@ const ProductDetailPage = () => {
   return (
     <div
       style={{
-        padding: "0 120px",
+        padding: "0 clamp(16px, 4vw, 120px)",
         backgroundColor: "#efefef",
-        height: "1000px",
+        minHeight: "100vh",
       }}
     >
       <h4>

@@ -44,14 +44,10 @@ const AdminPage = () => {
   return (
     <>
       <HeaderCompomment isHiddenSearch isHiddenCart />
-      <div style={{ display: "flex" }}>
+      <div className="admin-layout">
         <Menu
           mode="inline"
-          style={{
-            width: 256,
-            height: "100vh",
-            boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
-          }}
+          className="admin-menu"
           items={items}
           onClick={handleOnClickMenu}
         />

@@ -1,6 +1,4 @@
 const Product = require("../models/ProductModel")
-const bcrypt = require("bcrypt")
-
 const createProduct = (newProduct) => {
     return new Promise(async (resolve, reject) => {
         const { name, image, type, price, countInStock, rating, description, discount } = newProduct

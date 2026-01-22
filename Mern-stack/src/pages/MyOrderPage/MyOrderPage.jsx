@@ -114,7 +114,7 @@ const MyOrderPage = () => {
             {contextHolder}
             <Loading isPending={isPending || isPendingCancel}>
                 <WrapperContainer>
-                    <div style={{ height: "100%", width: "1270px", margin: "0 auto" }}>
+                    <div style={{ height: "100%", maxWidth: "1270px", width: "100%", margin: "0 auto", padding: "0 16px" }}>
                         <WrapperListOrder>
                             <div style={{ marginLeft: "80px" }}><h4>Đơn hàng của tôi</h4></div>
                             {data?.map((order) => {

@@ -33,6 +33,10 @@ export const WrapperContainer = styled.div`
 
 export const WrapperLeft = styled.div`
   width: 910px;
+
+  @media (max-width: 1024px) {
+    width: 100%;
+  }
 `;
 
 export const WrapperListOrder = styled.div`
@@ -56,6 +60,12 @@ export const WrapperHeaderItem = styled.div`
   align-items: flex-start;
   height: 90px;
   width: 100%;
+
+  @media (max-width: 768px) {
+    height: auto;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
 `;
 
 export const WrapperItemOrder = styled.div`
@@ -65,7 +75,8 @@ export const WrapperItemOrder = styled.div`
   background: #fff;
   margin-top: 12px;
   flex-direction: column;
-  width: 950px;
+  width: 100%;
+  max-width: 950px;
   margin: 0 auto;
   background: #fff;
   border-radius: 6px;

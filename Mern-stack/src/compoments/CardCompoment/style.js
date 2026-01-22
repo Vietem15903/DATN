@@ -10,6 +10,19 @@ export const WrapperCardStyle = styled(Card)`
   position: relative;
   background-color: ${(props) => (props.disabled ? "#ccc" : "#fff")};
   cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
+
+  @media (max-width: 768px) {
+    width: calc(50vw - 32px);
+    & img {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 1 / 1;
+    }
+  }
+
+  @media (max-width: 480px) {
+    width: 100%;
+  }
 `;
 
 export const StyleNameProduct = styled.div`

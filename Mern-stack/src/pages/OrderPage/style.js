@@ -7,6 +7,8 @@ export const WrapperStyleHeader = styled.div`
   border-radius: 4px;
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
   span {
     color: rgb(36, 36, 36);
     font-weight: 400;
@@ -30,6 +32,10 @@ export const WrapperStyleHeaderDelivery = styled.div`
 
 export const WrapperLeft = styled.div`
   width: 910px;
+
+  @media (max-width: 1024px) {
+    width: 100%;
+  }
 `;
 
 export const WrapperListOrder = styled.div``;
@@ -37,6 +43,8 @@ export const WrapperListOrder = styled.div``;
 export const WrapperItemOrder = styled.div`
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
   padding: 9px 16px;
   background: #fff;
   margin-top: 12px;
@@ -63,6 +71,12 @@ export const WrapperRight = styled.div`
   flex-direction: column;
   gap: 10px;
   align-items: center;
+
+  @media (max-width: 1024px) {
+    width: 100%;
+    margin-left: 0;
+    margin-top: 16px;
+  }
 `;
 
 export const WrapperInfo = styled.div`

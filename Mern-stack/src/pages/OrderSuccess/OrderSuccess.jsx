@@ -17,9 +17,9 @@ const OrderSuccess = () => {
     return (
         <>
             {contextHolder}
-            <div style={{ background: "#f5f5fa", with: "100%", height: "100vh" }}>
+            <div style={{ background: "#f5f5fa", width: "100%", minHeight: "100vh" }}>
                 <Loading isPending={false}>
-                    <div style={{ height: "100%", width: "1270px", margin: "0 auto" }}>
+                    <div style={{ height: "100%", maxWidth: "1270px", width: "100%", margin: "0 auto", padding: "0 16px" }}>
                         <h3>Đặt hàng thành công</h3>
                         <div style={{ display: "flex", justifyContent: "center" }}>
                             <WrapperContainer>

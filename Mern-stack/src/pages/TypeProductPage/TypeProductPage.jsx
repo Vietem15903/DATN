@@ -65,19 +65,31 @@ const TypeProductPage = () => {
           height: "calc(100vh - 64px)",
         }}
       >
-        <div style={{ width: "1270px", margin: "0 auto", height: "100%" }}>
+        <div
+          style={{
+            maxWidth: "1270px",
+            width: "100%",
+            margin: "0 auto",
+            height: "100%",
+            padding: "0 16px",
+          }}
+        >
           <Row
             style={{
-              flexWrap: "nowrap",
+              flexWrap: "wrap",
+              rowGap: "16px",
               paddingTop: "10px",
               height: "calc(100% - 20px)",
             }}
           >
-            <WrapperNavbar span={4}>
+            <WrapperNavbar span={4} xs={24} md={6} lg={4}>
               <NavbarCompoment />
             </WrapperNavbar>
             <Col
               span={20}
+              xs={24}
+              md={18}
+              lg={20}
               style={{
                 display: "flex",
                 flexDirection: "column",

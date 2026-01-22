@@ -206,11 +206,11 @@ const PaymentPage = () => {
   return (
     <>
       {contextHolder}
-      <div style={{ background: "#f5f5fa", with: "100%", height: "100vh" }}>
+      <div style={{ background: "#f5f5fa", width: "100%", minHeight: "100vh" }}>
         <Loading isPending={isPendingAddOrder}>
-          <div style={{ height: "100%", width: "1270px", margin: "0 auto" }}>
+          <div style={{ height: "100%", maxWidth: "1270px", width: "100%", margin: "0 auto", padding: "0 16px" }}>
             <h3>Thanh toán</h3>
-            <div style={{ display: "flex", justifyContent: "center" }}>
+            <div style={{ display: "flex", justifyContent: "center", flexWrap: "wrap", gap: "16px" }}>
               <WrapperLeft>
                 <WrapperInfo>
                   <div>
